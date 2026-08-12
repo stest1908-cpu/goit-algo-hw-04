@@ -3,7 +3,24 @@
 # (кожен рядок: "Ім'я,зарплата") і повертає кортеж (загальна_сума, середня_сума).
 
 def total_salary(path):
-    pass
+    try:
+        with open(path, "r", encoding="utf-8") as file:
+            total = 0
+            count = 0
+            for line in file:
+                name, salary = line.strip().split(",")
+                total += int(salary)
+                count += 1
+            average = 0
+            if count > 0:
+                average = total / count 
+        return total, average
+    except FileNotFoundError:
+        print(f"Файл за шляхом '{path}' не знайдено.")
+        return 0, 0
+
+
+
 
 
 if __name__ == "__main__":
