@@ -4,7 +4,23 @@
 # виду {"id": ..., "name": ..., "age": ...}.
 
 def get_cats_info(path):
-    pass
+    try:
+        with open(path, "r", encoding="utf-8") as file:
+            cats_info = []
+            for line in file:
+                line = line.strip()
+                if not line:
+                    continue
+                try:
+                    cat_id, name, age = line.split(",")
+                    cats_info.append({"id": cat_id, "name": name, "age": int(age)})
+                except ValueError:
+                    print(f"Пропущено некоректний рядок: '{line}'")
+        return cats_info
+    except FileNotFoundError:
+        print(f"Файл за шляхом '{path}' не знайдено.")
+        return []
+            
 
 
 if __name__ == "__main__":
