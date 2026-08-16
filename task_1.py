@@ -8,9 +8,15 @@ def total_salary(path):
             total = 0
             count = 0
             for line in file:
-                name, salary = line.strip().split(",")
-                total += int(salary)
-                count += 1
+                line = line.strip()
+                if not line:
+                    continue
+                try:
+                    name, salary = line.split(",")
+                    total += int(salary)
+                    count += 1
+                except ValueError:
+                    print(f"Пропущено некоректний рядок: '{line}'")
             average = 0
             if count > 0:
                 average = total / count 
@@ -18,9 +24,6 @@ def total_salary(path):
     except FileNotFoundError:
         print(f"Файл за шляхом '{path}' не знайдено.")
         return 0, 0
-
-
-
 
 
 if __name__ == "__main__":
