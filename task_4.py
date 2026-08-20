@@ -8,21 +8,43 @@ def parse_input(user_input):
 
 
 def add_contact(args, contacts):
-    name, phone = args
+    try:
+        name, phone = args
+    except ValueError:
+        return "Invalid number of arguments. Usage: add [name] [phone]"
     contacts[name] = phone
     return "Contact added."
 
 
 def change_contact(args, contacts):
-    pass
+    try:
+        name, phone = args
+    except ValueError:
+        return "Invalid number of arguments. Usage: change [name] [phone]"
+    if name in contacts:
+        contacts[name] = phone
+        return "Contact updated."
+    else:
+        return "Contact not found."
 
 
 def show_phone(args, contacts):
-    pass
+    try:
+        name, = args
+    except ValueError:
+        return "Invalid number of arguments. Usage: phone [name]"
+    if name in contacts:
+        return contacts[name]
+    else:
+        return "Contact not found."
+
 
 
 def show_all(contacts):
-    pass
+    if contacts:
+        return "\n".join([f"{name}: {phone}" for name, phone in contacts.items()])
+    else:
+        return "No contacts found."
 
 
 def main():
