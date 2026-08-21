@@ -13,7 +13,7 @@ def get_cats_info(path):
                     continue
                 try:
                     cat_id, name, age = line.split(",")
-                    cats_info.append({"id": cat_id, "name": name, "age": int(age)})
+                    cats_info.append({"id": cat_id, "name": name, "age": age})
                 except ValueError:
                     print(f"Пропущено некоректний рядок: '{line}'")
         return cats_info

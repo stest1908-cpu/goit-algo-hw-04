@@ -13,7 +13,7 @@ def total_salary(path):
                     continue
                 try:
                     name, salary = line.split(",")
-                    total += int(salary)
+                    total += float(salary)
                     count += 1
                 except ValueError:
                     print(f"Пропущено некоректний рядок: '{line}'")
